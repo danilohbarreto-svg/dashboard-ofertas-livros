@@ -81,6 +81,22 @@ def preco_mais_caro(livros):
     return preco_mais_caro
 
 
+def livro_mais_caro(livros):
+    
+    livro_mais_caro = None
+    maior_preco: float = 0
+    for livro in livros:
+        preco_original: str = livro["preco"]
+        preco_original_limpo: str = preco_original.replace("£", "").strip()
+        preco_num: float = float(preco_original_limpo)
+
+        if preco_num > maior_preco:
+            maior_preco = preco_num
+            livro_mais_caro = livro
+
+    return livro_mais_caro
+
+
 
 
 
@@ -97,3 +113,6 @@ if __name__ == "__main__":
 
     preco_caro: float = preco_mais_caro(livros)
     print(f"O preço do livro mais caro é: £{preco_caro:.2f}")
+
+    livro_caro = livro_mais_caro(livros)
+    print(f"O livro mais caro é: {livro_caro['titulo']} com preço de £{livro_caro['preco']}")
